@@ -86,15 +86,18 @@ class PiaLiveIE(InfoExtractor):
             'play_url': video_key,
             'api_key': self.API_KEY,
         })
+        api_kwargs = {
+            'video_id': program_code,
+            'data': payload,
+            'headers': {'Content-Type': content_type, 'Referer': self.PLAYER_ROOT_URL},
+        }
 
         player_tag_list = self._download_json(
-            f'{self.PIA_LIVE_API_URL}/perf/player-tag-list/{program_code}', program_code,
-            data=payload, headers={'Content-Type': content_type, 'Referer': self.PLAYER_ROOT_URL},
+            f'{self.PIA_LIVE_API_URL}/perf/player-tag-list/{program_code}', **api_kwargs,
             note='Fetching player tag list', errnote='Unable to fetch player tag list')
         if self.get_param('getcomments'):
             chat_room_url = traverse_obj(self._download_json(
-                f'{self.PIA_LIVE_API_URL}/perf/chat-tag-list/{program_code}/{article_code}', program_code,
-                data=payload, headers={'Content-Type': content_type, 'Referer': self.PLAYER_ROOT_URL},
+                f'{self.PIA_LIVE_API_URL}/perf/chat-tag-list/{program_code}/{article_code}', **api_kwargs,
                 note='Fetching chat info', errnote='Unable to fetch chat info', fatal=False),
                 ('data', 'chat_one_tag', {extract_attributes}, 'src', {url_or_none}))
 
