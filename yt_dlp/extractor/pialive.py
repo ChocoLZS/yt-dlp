@@ -33,6 +33,7 @@ class PiaLiveIE(InfoExtractor):
                 'skip_download': True,
                 'ignore_no_formats_error': True,
             },
+            'skip': 'The video is no longer available',
         },
         {
             'url': 'https://player.pia-live.jp/stream/4JagFBEIM14s_hK9aXHKf3k3F3bY5eoHFQxu68TC6krJdu0GVBVbVy01IwpJ6J3qBEm3d9TCTt1d0eWpsZGj7DrOjVOmS7GAWGwyscMgiThopJvzgWC4H5b-7XQjAfRZ',
@@ -48,6 +49,7 @@ class PiaLiveIE(InfoExtractor):
                 'skip_download': True,
                 'ignore_no_formats_error': True,
             },
+            'skip': 'The video is no longer available',
         },
     ]
 
