@@ -100,6 +100,8 @@ class PiaLiveIE(InfoExtractor):
                 f'{self.PIA_LIVE_API_URL}/perf/chat-tag-list/{program_code}/{article_code}', **api_kwargs,
                 note='Fetching chat info', errnote='Unable to fetch chat info', fatal=False),
                 ('data', 'chat_one_tag', {extract_attributes}, 'src', {url_or_none}))
+        else:
+            chat_room_url = None
 
         return self.url_result(
             extract_attributes(player_tag_list['data']['movie_one_tag'])['src'], url_transparent=True,
